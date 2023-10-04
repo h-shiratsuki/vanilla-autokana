@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>vanilla-autokana ES5 DEMO</title>
+</head>
+<body>
+<form action="">
+    <div>
+        <label for="name">名前</label>
+        <input name="name" id="name">
+    </div>
+    <div>
+        <label for="furigana">ふりがな</label>
+        <input name="furigana" id="furigana">
+    </div>
+    <br />
+    <div>
+      <label for="katakana">
+        <input type="checkbox" name="katakana" id="katakana" label="カタカナ">
+        カタカナ
+      </label>
+      <label for="half">
+        <input type="checkbox" name="half" id="half" label="半角" />
+        半角
+      </label>
+      <input type="submit" value="変更">
+    </div>
+</form>
+<script src="./dist/autokana.js" defer></script>
+<script>
+  const searchParams = new URLSearchParams(window.location.search)
+  const katakana = searchParams.get("katakana") === "on";
+  const half = searchParams.get("half") === "on";
+  if (katakana) {
+    document.getElementById("katakana").checked = katakana;
+  }
+  if (half) {
+    document.getElementById("half").checked = half;
+  }
+  document.addEventListener("DOMContentLoaded", function() {
+    AutoKana.bind("#name", "#furigana", { debug: true, katakana, half });
+  });
+</script>
+</body>
+</html>

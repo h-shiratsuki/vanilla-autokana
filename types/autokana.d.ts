@@ -2,6 +2,7 @@ declare module 'vanilla-autokana' {
   type Bindable = string | Element
   export interface Option {
     katakana: boolean;
+    half: boolean;
     debug: boolean;
     checkInterval: number;
   }
